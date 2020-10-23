@@ -52,7 +52,7 @@ while not done:
     game_done = False
     ori = (0, 1)
     snake = [(2, 2), (2, 3), (2, 4)]
-    apple = (3, 3)
+    apple = (0, 3)
     speed = NORMAL_SPEED
     powerup = 0
     while not game_done and not done:
@@ -79,9 +79,9 @@ while not done:
                 powerup -= 1
                 if powerup == 0:
                     pygame.mixer.music.stop()
-                speed = POWERUP_SPEED
-            else:
-                speed = NORMAL_SPEED
+                    speed = NORMAL_SPEED
+                else:
+                    speed = POWERUP_SPEED
             head = snake[len(snake)-1]
             new_head = (
                 head[0] + ori[0],
@@ -101,7 +101,7 @@ while not done:
             
             snake.append(new_head)
 
-            if head == apple:
+            if new_head == apple:
                 pygame.mixer.music.load(randomNom())
                 pygame.mixer.music.play(0)
                 pygame.mixer.music.queue(randomStar())
